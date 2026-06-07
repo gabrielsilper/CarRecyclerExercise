@@ -36,7 +36,7 @@ class CarAdapter(val cars: List<Car>) : RecyclerView.Adapter<CarAdapter.CarViewH
             itemView.findViewById<TextView>(R.id.carBrand).text = car.brand
             itemView.findViewById<TextView>(R.id.carYear).text = car.year.toString()
 
-            val brlFormat = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+            val brlFormat = NumberFormat.getCurrencyInstance()
             itemView.findViewById<TextView>(R.id.carPrice).text = brlFormat.format(car.price)
         }
     }
