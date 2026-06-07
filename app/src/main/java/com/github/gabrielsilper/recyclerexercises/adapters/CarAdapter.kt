@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.gabrielsilper.recyclerexercises.R
 import com.github.gabrielsilper.recyclerexercises.models.Car
 import java.text.NumberFormat
-import java.util.Locale
 
 class CarAdapter(val cars: List<Car>) : RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
     override fun onCreateViewHolder(
