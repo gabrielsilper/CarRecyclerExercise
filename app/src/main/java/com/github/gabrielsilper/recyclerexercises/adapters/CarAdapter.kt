@@ -10,7 +10,10 @@ import com.github.gabrielsilper.recyclerexercises.R
 import com.github.gabrielsilper.recyclerexercises.models.Car
 import java.text.NumberFormat
 
-class CarAdapter(val cars: List<Car>) : RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
+class CarAdapter(
+    private val cars: List<Car>,
+    private val onItemClicked: (car: Car) -> Unit
+) : RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -21,7 +24,7 @@ class CarAdapter(val cars: List<Car>) : RecyclerView.Adapter<CarAdapter.CarViewH
 
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
         val car = cars[position]
-        holder.bind(car)
+        holder.bind(car, onItemClicked)
     }
 
     override fun getItemCount(): Int {
@@ -29,7 +32,7 @@ class CarAdapter(val cars: List<Car>) : RecyclerView.Adapter<CarAdapter.CarViewH
     }
 
     class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(car: Car) {
+        fun bind(car: Car, onItemClicked: (car: Car) -> Unit) {
             itemView.findViewById<ImageView>(R.id.carImage).setImageResource(car.image)
             itemView.findViewById<TextView>(R.id.carModel).text = car.model
             itemView.findViewById<TextView>(R.id.carBrand).text = car.brand
@@ -37,6 +40,10 @@ class CarAdapter(val cars: List<Car>) : RecyclerView.Adapter<CarAdapter.CarViewH
 
             val brlFormat = NumberFormat.getCurrencyInstance()
             itemView.findViewById<TextView>(R.id.carPrice).text = brlFormat.format(car.price)
+
+            itemView.setOnClickListener {
+                onItemClicked(car)
+            }
         }
     }
 }
