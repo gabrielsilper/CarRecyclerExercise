@@ -1,5 +1,6 @@
 package com.github.gabrielsilper.recyclerexercises
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -8,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.gabrielsilper.recyclerexercises.activities.CarInfoActivity
 import com.github.gabrielsilper.recyclerexercises.adapters.CarAdapter
 import com.github.gabrielsilper.recyclerexercises.models.Car
 import com.github.gabrielsilper.recyclerexercises.repositories.CarRepository
@@ -32,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         val carAdapter = CarAdapter(carRepository.getCars()) { car ->
-            val message = "Car clicked ${car.model} with price R$ ${car.price}"
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, CarInfoActivity::class.java)
+            startActivity(intent)
         }
 
         carsRecyclerView.layoutManager = LinearLayoutManager(this)
